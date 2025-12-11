@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Pentagrama: El Portal Musical de Primaria</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración para usar la fuente Inter y un esquema de color personalizado -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Fondo general muy claro */
+        }
+        /* Estilos esenciales para que el diseño full-height funcione correctamente */
+        html, body {
+            height: 100%; 
+            margin: 0;
+            overflow-y: hidden; /* Impide el scroll vertical en la ventana principal */
+        }
+        /* Estilos para el icono (Placeholder de nota musical) */
+        .musical-note {
+            display: inline-block;
+            transform: rotate(15deg);
+            font-size: 2rem;
+            line-height: 1;
+        }
+        
+        /* -------------------------------------- */
+        /* CORRECCIÓN DE ESTILOS DE ICONOS SVG */
+        /* -------------------------------------- */
+        .custom-icon svg {
+            /* Definición del tamaño común para todos los iconos */
+            width: 24px;
+            height: 24px;
+            color: currentColor; /* Asegura que todos hereden el color del botón */
+        }
+
+        /* 1. Estilo para iconos BASADOS EN TRAZO (stroke) - Usan viewBox="0 0 24 24" (Lucide, Xilófono) */
+        .custom-icon svg[viewBox="0 0 24 24"] {
+            fill: none; 
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* 2. Estilo para iconos BASADOS EN RELLENO (fill) - Usan otros viewBox o tienen id específico */
+        /* Excepción para el nuevo icono de Compás Maestro, ya que está diseñado para ser relleno */
+        .custom-icon #maestro-compas-svg,
+        .custom-icon svg:not([viewBox="0 0 24 24"]) path {
+            fill: currentColor;
+            stroke: none;
+        }
+        /* -------------------------------------- */
+        
+        /* El área de contenido principal (main) debe ocupar el 100% del alto del viewport 
+        menos el alto del header (4rem o 64px)
+        */
+        .content-area {
+            height: calc(100vh - 4rem); 
+            overflow: hidden; /* Evita el scroll en el MAIN, dejando que el iframe/contenido interno lo maneje */
+            -webkit-overflow-scrolling: touch;
+        }
+        /* El contenedor del iframe y el iframe deben tomar el 100% del alto disponible */
+        #app-iframe-container, #app-iframe {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 1. Encabezamiento (Barra Superior Fija) -->
+    <header id="header" class="fixed top-0 left-0 right-0 h-16 bg-sky-600 text-white shadow-lg z-20 flex items-center justify-between px-4 lg:px-8">
+        <div class="flex items-center space-x-3">
+            <!-- Botón de Menú para pantallas pequeñas -->
+            <button id="menu-toggle" class="p-2 lg:hidden rounded-lg hover:bg-sky-500 transition duration-150" aria-label="Abrir Menú de Aplicaciones">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+            
+            <!-- Logo/Imagen Placeholder (Icono de Nota Musical) -->
+            <div class="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center shadow-md">
+                <span class="musical-note text-sky-800 font-extrabold">&#9835;</span>
+            </div>
+            <!-- Título Principal -->
+            <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">
+                Mundo Pentagrama: El Portal Musical de Primaria
+            </h1>
+        </div>
+        <div class="text-sm hidden sm:block">
+            <span class="font-semibold">¡Aprende y diviértete!</span>
+        </div>
+    </header>
+
+    <!-- 2. Índice/Menú de Navegación (Barra Lateral Fija) -->
+    <nav id="sidebar" class="fixed top-16 left-0 bottom-0 w-64 bg-slate-100 shadow-xl z-30 p-4 transition-all duration-300 transform -translate-x-full lg:translate-x-0">
+        <h2 class="text-lg font-bold text-sky-700 mb-4 border-b pb-2">Aplicaciones</h2>
+
+        <div class="space-y-3">
+            <script>
+                // Definición del SVG personalizado para el Xilófono Virtual (INVERTIDO)
+                // Barra más larga (height=15) a la izquierda (x=3) y más corta (height=6) a la derecha (x=18).
+                const xylophoneIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="3" height="15" rx="1" ry="1"/><rect x="8" y="8" width="3" height="12" rx="1" ry="1"/><rect x="13" y="11" width="3" height="9" rx="1" ry="1"/><rect x="18" y="14" width="3" height="6" rx="1" ry="1"/></svg></span>';
+
+                // SVG para Ritmo y Compás (Metrónomo) - Icono basado en relleno
+                const metronomeIcon = '<span class="custom-icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 314 314" style="enable-background:new 0 0 314 314;" xml:space="preserve"><path d="M281.853,46.631c-0.39-2.035-1.66-3.794-3.47-4.802l-11.257-6.271l5.297-9.511c1.881-3.378,0.668-7.641-2.709-9.521 c-3.38-1.881-7.641-0.667-9.521,2.709l-5.297,9.511l-11.257-6.269c-1.81-1.008-3.975-1.162-5.908-0.422 c-1.936,0.74-3.442,2.3-4.117,4.259l-13.806,40.109c-1.103,3.207,0.25,6.743,3.213,8.394l4.741,2.642l-23.115,41.501L184.592,17.11 C182.703,7.516,173.563,0,163.783,0h-56.052c-9.778,0-18.918,7.516-20.809,17.11L46.102,224.425 c-0.002,0.012-0.004,0.023-0.006,0.035l-13.729,69.725c-0.998,5.067,0.205,10.132,3.3,13.895C38.76,311.842,43.496,314,48.66,314 h174.195c5.163,0,9.898-2.158,12.993-5.92c3.095-3.763,4.298-8.827,3.301-13.896l-13.732-69.741 c-0.001-0.002-0.001-0.004-0.001-0.004l-16.584-84.225l31.16-55.944l4.742,2.642c1.072,0.598,2.243,0.885,3.402,0.885 c2.046,0,4.056-0.896,5.425-2.571l26.836-32.853C281.708,50.769,282.241,48.665,281.853,46.631z M100.659,19.816 c0.6-3.044,3.971-5.816,7.072-5.816h56.052c3.103,0,6.473,2.771,7.072,5.815l23.249,118.069L164,191.933 c-6.17-2.645-13.121-4.627-21.242-5.363v-14.92h10.96c3.866,0,7-3.134,7-7s-3.134-7-7-7h-10.96v-41.211h10.96c3.866,0,7-3.134,7-7 c0-3.866-3.134-7-7-7h-10.96v-41.21h10.96c3.866,0,7-3.134,7-7s-3.134-7-7-7h-10.96V34.938c0-3.866-3.134-7-7-7 c-3.866,0-7,3.134-7,7v12.291h-10.96c-3.866,0-7,3.134-7,7s3.134,7,7,7h10.96v41.21h-10.96c-3.866,0-7,3.134-7,7 c0,3.866,3.134,7,7,7h10.96v41.211h-10.96c-3.866,0-7,3.134-7,7s3.134,7,7,7h10.96v14.92c-19.447,1.763-32.189,10.688-43.564,18.666 c-7.894,5.536-14.975,10.493-23.52,12.573L100.659,19.816z M225.036,299.188c-0.432,0.523-1.206,0.813-2.181,0.813H48.66 c-0.976,0-1.75-0.289-2.181-0.814c-0.432-0.524-0.565-1.34-0.377-2.297l12.675-64.372c14.147-1.593,24.455-8.807,34.455-15.82 c12.059-8.457,23.448-16.444,42.525-16.444c19.077,0,30.466,7.987,42.524,16.444c10.001,7.014,20.308,14.228,34.456,15.82 l12.675,64.371C225.602,297.846,225.468,298.662,225.036,299.188z M209.842,217.809c-8.545-2.08-15.627-7.037-23.521-12.574 c-3.175-2.227-6.456-4.527-9.959-6.726l21.928-39.367L209.842,217.809z M246.427,71.829l-11.474-6.392l9.177-26.662l20.136,11.216 L246.427,71.829z"/></svg></span>';
+                
+                // SVG para Instrumentos Musicales (Arpa) - Icono basado en relleno
+                const harpIcon = '<span class="custom-icon"><svg fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g><g><path d="M401.243,129.918c0-14.168-7.765-27.106-20.262-33.765c-16.639-8.868-37.614-4.1-48.796,11.093l-19.868,27.023c-1.573,2.139-3.96,3.312-6.646,3.21c-2.645-0.099-4.968-1.444-6.375-3.692l-47.357-75.639c-20.005-31.942-56.554-50.377-93.964-47.707c-1.303,0.093-6.221,0.785-6.221,0.785C147.992,4.483,140.819,0,132.667,0c-1.716,0-3.443,0.204-5.167,0.615c-10.701,2.597-17.834,12.797-16.606,23.638l48.847,480.623c0.412,4.046,3.818,7.123,7.885,7.123h146.594c3.202,0,6.091-1.927,7.32-4.884c1.229-2.957,0.558-6.363-1.7-8.633l-27.478-27.615c-1.487-1.495-3.509-2.336-5.618-2.336H268.51L398.5,144.113C400.32,139.557,401.243,134.782,401.243,129.918z M383.783,138.226L249.848,472.485c-0.375,0.937-0.569,1.938-0.569,2.949v1.025c0,4.377,3.549,7.926,7.926,7.926h26.244l11.703,11.763H174.789L126.656,22.559c-0.341-3.011,1.63-5.822,4.55-6.531c3.617-0.859,7.051,1.657,7.45,5.195l9.32,83.544c0.006,0.077,0.014,0.154,0.022,0.233l41.267,369.883c0.138,2.362,1.334,4.618,3.394,6.05c3.209,2.23,7.572,1.783,10.269-1.047c0.57-0.598,1.037-1.278,1.392-2.01l173.42-333.575c2.108-4.073,2.431-8.884,0.882-13.2c-1.548-4.315-4.855-7.826-9.076-9.632c-2.606-1.114-5.465-1.537-8.193-1.231c-5.126,0.525-9.625,3.332-12.346,7.7l-18.516,29.728c-6.781,10.884-18.486,17.442-31.312,17.54c-0.098,0-0.196,0.001-0.293,0.001c-12.712,0-24.393-6.363-31.288-17.064l-48.995-76.021c-7.108-11.024-19.173-17.602-32.27-17.602c-0.014,0-0.027,0-0.041,0c-1.412,0-2.739,0.071-4.008,0.212c-8.396,0.88-15.902,4.4-21.743,9.693l-5.324-47.727l0.867-0.172c32.651-3.506,64.977,12.183,82.419,40.033l47.356,75.636c4.172,6.669,11.357,10.827,19.218,11.122c7.884,0.283,15.346-3.315,20.015-9.659l19.867-27.021c6.545-8.896,18.827-11.689,28.57-6.495c7.318,3.899,11.864,11.476,11.864,19.775C385.39,132.759,384.849,135.556,383.783,138.226z M263.956,328.797l-12.095,23.264l-25.909-229.272l17.853,27.701L263.956,328.797z M262.741,176.865c4.658,4.35,10.041,7.782,15.887,10.189l10.538,93.253l-12.104,23.283L262.741,176.865z M238.756,377.268l-12.095,23.264L190.526,80.765c6.02,1.132,11.352,4.673,14.753,9.947l1.328,2.06L238.756,377.268z M213.556,425.741l-11.38,21.889l-38.378-343.987l-0.006-0.691c-0.005-8.256,4.396-15.509,11.091-19.449L213.556,425.741z M295.015,190.902c1.419,0.102,2.846,0.167,4.287,0.155c3.516-0.026,6.972-0.402,10.332-1.089l4.732,41.865l-12.096,23.266L295.015,190.902z M324.943,184.269c7.63-4.294,14.19-10.491,19.006-18.222l18.516-29.729c0.143-0.228,0.353-0.295,0.579-0.318c0.083-0.011,0.178,0.004,0.27,0.044c0.071,0.031,0.285,0.122,0.388,0.409c0.103,0.287-0.003,0.492-0.032,0.548l-36.2,69.627L324.943,184.269z"/></g></g></svg></span>';
+
+                // SVG para Compás Maestro (Nuevo icono basado en relleno)
+                // Se utiliza id="maestro-compas-svg" para aplicar el estilo de relleno en CSS
+                const maestroCompasIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" id="maestro-compas-svg" width="24" height="24" viewBox="0 0 24 24"><path d="m10.923 1.3165h0.58478c1.0908 0.00941 2.1029 0.24929 3.0363 0.71973 0.93338 0.47046 1.7206 1.1152 2.3616 1.9343-0.11059-0.00184-0.21556-0.00932-0.31488-0.022489-0.09936-0.013108-0.20432-0.020607-0.31488-0.022489-1.0206 0.037498-1.8134 0.40111-2.3784 1.0908-0.56511 0.68974-0.85188 1.4807-0.8603 2.3728 0.06746 1.2229 0.48355 2.0946 1.2483 2.6146 0.7647 0.52011 1.4732 0.77314 2.1254 0.75908 0.83404-0.0253 1.5387-0.3458 2.1142-0.96151 0.5754-0.61571 0.87528-1.3748 0.89967-2.2773-2.99e-4 -0.88355-0.29463-1.8904-0.88301-3.0205-0.58841-1.1301-1.4692-2.1203-2.6423-2.9706-1.1732-0.85022-2.6371-1.2973-4.3917-1.3411h-0.58478l-1.6644 0.13495c-3.2284 0.58666-5.5432 1.9549-6.9443 4.1047-1.4011 2.1498-2.0852 4.6651-2.0524 7.5459-0.029995 2.8808 0.65975 5.3961 2.0692 7.5459 1.4095 2.1498 3.7186 3.518 6.9274 4.1047l1.6644 0.13494c0.11152 0.0019 0.2146 0.0093 0.30926 0.02249 0.09464 0.01311 0.18648 0.0206 0.27552 0.02249 1.9992-0.07997 3.6036-0.68975 4.8132-1.8293 1.2095-1.1396 2.0842-2.3292 2.624-3.5687 0.53977-1.2395 0.80467-2.0493 0.79469-2.4291-0.0074-0.16026-0.07124-0.28959-0.19118-0.38798-0.11998-0.09841-0.25118-0.14901-0.3936-0.15182-0.1153-9.42e-4 -0.22213 0.03468-0.3205 0.10684-0.09842 0.07215-0.17151 0.18648-0.2193 0.343-0.44516 1.8771-1.2867 3.4646-2.5247 4.7626-1.238 1.2979-2.7656 1.9746-4.5826 2.0299-0.08903-0.0019-0.18087-0.0094-0.27552-0.02249-0.09466-0.01313-0.19776-0.02063-1.1414-0.17993-2.0918-0.67006-2.8901-1.6241-3.2276-3.0195-0.33738-1.3954-0.48358-3.1254-0.43858-5.1899v-4.5883c-0.044991-2.0645 0.1012-3.7945 0.43858-5.1899 0.33737-1.3954 1.1358-2.3494 2.3953-2.862" stroke-width=".9702"/></svg></span>';
+
+                
+                // Estructura de navegación con URLs placeholder y la nueva página de Bienvenida
+                const navLinks = [
+                    // 1. Botón de Bienvenida (NO es una aplicación externa, isApp: false)
+                    { id: 'app-bienvenida', title: 'Bienvenida', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>', active: true, isApp: false },
+                    
+                    // 2. Aplicaciones (Iconos actualizados)
+                    // Ritmo y Compás: Icono de Metrónomo personalizado (relleno corregido)
+                    { id: 'app-ritmo-compas', title: 'Ritmo y Compás', icon: metronomeIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compases/' },
+                    { id: 'app-ritmo-melodia', title: 'Ritmo y Melodía', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>', active: false, isApp: true, url: 'https://alvramirezp.github.io/ritmoymelodia/' },
+                    // Instrumentos Musicales: Cambiado a ARPA (relleno corregido)
+                    { id: 'app-instrumentos', title: 'Instrumentos Musicales', icon: harpIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/instrumentos/' },
+                    { id: 'app-clasif-vocal', title: 'Mundo de Voces', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>', active: false, isApp: true, url: 'https://alvramirezp.github.io/voces/' },
+                    // Xilófono Virtual: SVG personalizado (stroke-based)
+                    { id: 'app-xilofono', title: 'Xilófono Virtual', icon: xylophoneIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/xilofono/' },
+                    // Compás Maestro: ¡NUEVO ICONO DE RELLENO!
+                    { id: 'app-compas', title: 'Compás Maestro', icon: maestroCompasIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compasmaestro/' },
+                    { id: 'app-siete', title: 'Aplicación 7', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-puzzle"><path d="M19.439 7.854l-2.028 1.956c-.53.513-.71 1.258-.45 1.956.26.7.06 1.45-.45 1.956l-2.028 1.956"/><path d="M16 14.862V18a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-3.138"/><path d="M4.561 7.854l2.028 1.956c.53.513.71 1.258.45 1.956-.26.7-.06 1.45.45 1.956l2.028 1.956"/><path d="M19.439 16.146l-2.028-1.956c-.53-.513-.71-1.258-.45-1.956.26-.7.06-1.45.45-1.956l-2.028-1.956"/><path d="M8 9.138V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.138"/><path d="M4.561 16.146l2.028-1.956c.53-.513.71-1.258-.45-1.956-.26-.7-.06-1.45.45-1.956l2.028-1.956"/><path d="M12 4v16"/></svg>', active: false, isApp: true, url: 'https://placehold.co/1000x800/f0abfc/701a75?text=Cargando+Aplicaci%C3%B3n+7' },
+                    { id: 'app-ocho', title: 'Aplicación 8', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><path d="M6 8h2"/><path d="M6 12h2"/><path d="M18 8h-2"/><path d="M18 12h-2"/></svg>', active: false, isApp: true, url: 'https://placehold.co/1000x800/dcfce7/064e3b?text=Cargando+Aplicaci%C3%B3n+8' },
+                ];
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    const sidebar = document.getElementById('sidebar');
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const appButtonsContainer = sidebar.querySelector('.space-y-3');
+                    
+                    const welcomePage = document.getElementById('welcome-page');
+                    const iframeContainer = document.getElementById('app-iframe-container');
+                    const appIframe = document.getElementById('app-iframe');
+                    
+                    // Contenido estático de la página de Bienvenida
+                    const welcomeContent = {
+                        title: '¡Te doy la bienvenida a Mundo Pentagrama!',
+                        subtitle: 'El portal educativo que transforma el aprendizaje musical.',
+                        // Texto actualizado
+                        text: `<b>Mundo Pentagrama</b> es el lugar perfecto para descubrir el maravilloso mundo de la música: las notas, los ritmos, los instrumentos musicales…
+Este portal interactivo está diseñado para alumnos y alumnas de <b>Educación Primaria</b>, haciendo que el aprendizaje de la música sea <b>divertido y práctico</b>: desde aprender a tocar el xilófono virtual hasta entender los ritmos más complicados.
+Utiliza el <b>menú de la izquierda</b> para elegir la aplicación que quieras explorar hoy. Cada botón te llevará a un desafío musical nuevo y divertido.
+<b>¡Elige tu primera aventura y que empiece la música!</b>`,
+                        image: "https://placehold.co/600x400/38bdf8/ffffff?text=Tu+Mundo+Musical+Interactivo"
+                    };
+
+                    const updateContent = (link) => {
+                         if (link.isApp) {
+                            // Si es una aplicación externa: Muestra el iframe y oculta la bienvenida
+                            welcomePage.classList.add('hidden');
+                            iframeContainer.classList.remove('hidden');
+                            appIframe.src = link.url;
+                        } else {
+                            // Si es la página de Bienvenida: Muestra la bienvenida y oculta el iframe
+                            iframeContainer.classList.add('hidden');
+                            welcomePage.classList.remove('hidden');
+                            
+                            // Restablece el contenido estático de la Bienvenida
+                            document.getElementById('content-title').textContent = welcomeContent.title;
+                            document.getElementById('content-subtitle').textContent = welcomeContent.subtitle;
+                            
+                            // Reemplazamos \n por <br> (sin doble <br>) para juntar los párrafos
+                            document.getElementById('content-text').innerHTML = welcomeContent.text.replace(/\n/g, '<br>');
+                        }
+                    };
+
+                    // Función para alternar la visibilidad del menú en pantallas pequeñas
+                    const toggleMenu = () => {
+                        sidebar.classList.toggle('-translate-x-full'); 
+                    };
+
+                    // 1. Agregar listener al botón de alternar menú
+                    if (menuToggle) {
+                        menuToggle.addEventListener('click', toggleMenu);
+                    }
+
+                    // Función para renderizar los botones y añadir el event listener
+                    const renderButtons = () => {
+                        appButtonsContainer.innerHTML = ''; // Limpiar
+                        navLinks.forEach(link => {
+                            const isActive = link.active;
+                            const button = document.createElement('button');
+                            button.id = link.id;
+                            button.className = `w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 text-left 
+                                ${isActive 
+                                    ? 'bg-yellow-400 text-sky-800 shadow-md font-bold' 
+                                    : 'bg-slate-200 hover:bg-sky-200 text-gray-700 hover:text-sky-800'}`;
+                            
+                            button.innerHTML = `${link.icon} <span class="text-sm">${link.title}</span>`;
+                            
+                            button.addEventListener('click', () => {
+                                // Lógica de cambio de estado activo (simulación de navegación)
+                                navLinks.forEach(l => l.active = (l.id === link.id));
+                                
+                                const selectedLink = navLinks.find(l => l.id === link.id);
+                                updateContent(selectedLink); // Actualiza la vista
+                                
+                                renderButtons(); // Vuelve a renderizar para actualizar el resaltado del botón
+
+                                // Cierra el menú en móviles después de hacer una selección
+                                if (window.innerWidth < 1024) { 
+                                    toggleMenu();
+                                }
+                            });
+
+                            appButtonsContainer.appendChild(button);
+                        });
+                    };
+
+                    renderButtons();
+                    // Inicializar el contenido en la página de bienvenida (que es el estado activo por defecto)
+                    updateContent(navLinks.find(l => l.active));
+                });
+            </script>
+        </div>
+    </nav>
+
+    <!-- 3. Cuerpo/Contenido Variable (Área de Aplicación) -->
+    <main id="content" class="lg:ml-64 mt-16 content-area">
+        
+        <!-- Contenedor 3A: Contenido Estático de Bienvenida (Visible por defecto) -->
+        <div id="welcome-page" class="p-4 lg:p-8 overflow-y-auto h-full">
+            <div class="max-w-4xl mx-auto py-10">
+                <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl border-t-4 border-sky-600">
+                    <header class="mb-6">
+                        <!-- Título principal -->
+                        <h2 id="content-title" class="text-3xl md:text-4xl font-extrabold text-sky-700 mb-2">
+                            ¡Te doy la bienvenida a Mundo Pentagrama!
+                        </h2>
+                        <!-- Subtítulo con negrita aplicada con Tailwind (font-bold) -->
+                        <p id="content-subtitle" class="text-xl text-gray-600 font-bold">El portal educativo que transforma el aprendizaje musical.</p>
+                    </header>
+                    
+                    <section class="mb-8">
+                        <!-- Cuerpo del texto (el contenido real se inserta vía JS) -->
+                        <p id="content-text" class="text-gray-700 leading-relaxed text-base md:text-lg">
+                            <!-- El contenido se inserta aquí por JavaScript con las negritas y el espaciado corregido -->
+                        </p>
+                    </section>
+
+                    <!-- Imagen Central Atractiva (Placeholder) -->
+                    <div class="flex justify-center my-8">
+                        <img 
+                            src="https://placehold.co/600x400/38bdf8/ffffff?text=Tu+Mundo+Musical+Interactivo" 
+                            alt="Ilustración de niños explorando instrumentos musicales virtuales" 
+                            class="rounded-xl shadow-2xl max-w-full h-auto border-4 border-sky-100"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/38bdf8/ffffff?text=Mundo+Pentagrama'"
+                        >
+                    </div>
+                    
+                    <footer class="text-center mt-6 pt-4 border-t border-gray-200">
+                        <!-- Texto del footer actualizado -->
+                        <p class="text-sm text-gray-500">
+                            © 2025 Mundo Pentagrama. Portal Educativo de Primaria. Álvaro Ramírez.
+                        </p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 3B: Iframe para Aplicaciones Externas (Oculto por defecto) -->
+        <div id="app-iframe-container" class="hidden w-full h-full bg-white">
+            <!-- El iframe carga la URL de la aplicación y ocupa el 100% del contenedor h-full -->
+            <iframe id="app-iframe" class="w-full h-full border-0 bg-white" src="" frameborder="0"></iframe>
+        </div>
+        
+    </main>
+    
+</body>
+</html>
