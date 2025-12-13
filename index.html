@@ -57,12 +57,18 @@
         }
         /* -------------------------------------- */
         
-        /* El área de contenido principal (main) debe ocupar el 100% del alto del viewport 
-        menos el alto del header (4rem o 64px)
+        /* CORRECCIÓN DE LAYOUT: 
+        Usamos posición absoluta y top/bottom para garantizar que el área de contenido 
+        ocupe exactamente el espacio entre el header (4rem) y el final del viewport (0).
+        Esto elimina el conflicto de altura y margen.
         */
         .content-area {
-            height: calc(100vh - 4rem); 
-            overflow: hidden; 
+            position: absolute;
+            top: 4rem; /* Empieza justo debajo del header (h-16 = 4rem) */
+            bottom: 0; /* Termina en el borde inferior del viewport */
+            right: 0;
+            left: 0; /* Ocupa todo el ancho inicialmente */
+            overflow: hidden; /* Controla el scroll del contenido dentro del main */
             -webkit-overflow-scrolling: touch;
         }
         /* El contenedor del iframe y el iframe deben tomar el 100% del alto disponible */
@@ -106,7 +112,8 @@
     </nav>
 
     <!-- 3. Cuerpo/Contenido Variable (Área de Aplicación) -->
-    <main id="content" class="lg:ml-64 mt-16 content-area">
+    <!-- Se elimina la clase mt-16 ya que el posicionamiento absoluto y top: 4rem se encarga del offset -->
+    <main id="content" class="lg:ml-64 content-area">
         
         <!-- Contenedor 3A: Contenido Estático de Bienvenida (Visible por defecto) -->
         <div id="welcome-page" class="p-4 lg:p-8 overflow-y-auto h-full">
