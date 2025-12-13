@@ -81,7 +81,7 @@
 <body class="text-gray-800">
 
     <!-- 1. Encabezamiento (Barra Superior Fija) -->
-    <header id="header" class="fixed top-0 left-0 right-0 h-16 bg-sky-600 text-white shadow-lg z-20 flex items-center justify-between px-4 lg:px-8">
+    <header id="header" class="fixed top-0 left-0 right-0 h-16 bg-sky-600 w-full text-white shadow-lg z-20 flex items-center justify-between px-4 lg:px-8">
         <div class="flex items-center space-x-3">
             <!-- Botón de Menú para pantallas pequeñas -->
             <button id="menu-toggle" class="p-2 lg:hidden rounded-lg hover:bg-sky-500 transition duration-150" aria-label="Abrir Menú de Aplicaciones">
@@ -104,9 +104,9 @@
 
     <!-- 2. Índice/Menú de Navegación (Barra Lateral Fija) -->
     <nav id="sidebar" class="fixed top-16 left-0 bottom-0 w-64 bg-slate-100 shadow-xl z-30 p-4 transition-all duration-300 transform -translate-x-full lg:translate-x-0 overflow-y-auto">
-        <h2 class="text-lg font-bold text-sky-700 mb-4 border-b pb-2">Aplicaciones</h2>
+        <!-- SE HA ELIMINADO EL ENCABEZADO "Aplicaciones" Y LA BARRA SEPARADORA -->
 
-        <div class="space-y-3" id="app-buttons-container">
+        <div class="space-y-3 pt-2" id="app-buttons-container">
             <!-- Los botones se insertan aquí con JavaScript -->
         </div>
     </nav>
@@ -165,6 +165,9 @@
 
         // Compás Maestro (fill-based, viewBox 0 0 24 24, con ID específico)
         const maestroCompasIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" id="maestro-compas-svg" width="24" height="24" viewBox="0 0 24 24"><path d="m10.923 1.3165h0.58478c1.0908 0.00941 2.1029 0.24929 3.0363 0.71973 0.93338 0.47046 1.7206 1.1152 2.3616 1.9343-0.11059-0.00184-0.21556-0.00932-0.31488-0.022489-0.09936-0.013108-0.20432-0.020607-0.31488-0.022489-1.0206 0.037498-1.8134 0.40111-2.3784 1.0908-0.56511 0.68974-0.85188 1.4807-0.8603 2.3728 0.06746 1.2229 0.48355 2.0946 1.2483 2.6146 0.7647 0.52011 1.4732 0.77314 2.1254 0.75908 0.83404-0.0253 1.5387-0.3458 2.1142-0.96151 0.5754-0.61571 0.87528-1.3748 0.89967-2.2773-2.99e-4 -0.88355-0.29463-1.8904-0.88301-3.0205-0.58841-1.1301-1.4692-2.1203-2.6423-2.9706-1.1732-0.85022-2.6371-1.2973-4.3917-1.3411h-0.58478l-1.6644 0.13495c-3.2284 0.58666-5.5432 1.9549-6.9443 4.1047-1.4011 2.1498-2.0852 4.6651-2.0524 7.5459-0.029995 2.8808 0.65975 5.3961 2.0692 7.5459 1.4095 2.1498 3.7186 3.518 6.9274 4.1047l1.6644 0.13494c0.11152 0.0019 0.2146 0.0093 0.30926 0.02249 0.09464 0.01311 0.18648 0.0206 0.27552 0.02249 1.9992-0.07997 3.6036-0.68975 4.8132-1.8293 1.2095-1.1396 2.0842-2.3292 2.624-3.5687 0.53977-1.2395 0.80467-2.0493 0.79469-2.4291-0.0074-0.16026-0.07124-0.28959-0.19118-0.38798-0.11998-0.09841-0.25118-0.14901-0.3936-0.15182-0.1153-9.42e-4 -0.22213 0.03468-0.3205 0.10684-0.09842 0.07215-0.17151 0.18648-0.2193 0.343-0.44516 1.8771-1.2867 3.4646-2.5247 4.7626-1.238 1.2979-2.7656 1.9746-4.5826 2.0299-0.08903-0.0019-0.18087-0.0094-0.27552-0.02249-0.09466-0.01313-0.19776-0.02063-1.1414-0.17993-2.0918-0.67006-2.8901-1.6241-3.2276-3.0195-0.33738-1.3954-0.48358-3.1254-0.43858-5.1899v-4.5883c-0.044991-2.0645 0.1012-3.7945 0.43858-5.1899 0.33737-1.3954 1.1358-2.3494 2.3953-2.862" stroke-width=".9702"/></svg></span>';
+        
+        // Beat Maker (Cuadrícula 3x3 para pads) (stroke-based, viewBox 0 0 24 24)
+        const beatMakerIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span>';
 
         // ----------------------------------------------------
         // Lógica Principal de la Aplicación
@@ -192,7 +195,11 @@
                 { id: 'app-clasif-vocal', title: 'Mundo de Voces', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>', active: false, isApp: true, url: 'https://alvramirezp.github.io/voces/' },
                 { id: 'app-xilofono', title: 'Xilófono Virtual', icon: xylophoneIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/xilofono/' },
                 { id: 'app-compas', title: 'Compás Maestro', icon: maestroCompasIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compasmaestro/' },
-                { id: 'app-siete', title: 'Aplicación 7', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-puzzle"><path d="M19.439 7.854l-2.028 1.956c-.53.513-.71 1.258-.45 1.956.26.7.06 1.45-.45 1.956l-2.028 1.956"/><path d="M16 14.862V18a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-3.138"/><path d="M4.561 7.854l2.028 1.956c.53.513.71 1.258.45 1.956-.26.7-.06 1.45.45 1.956l2.028 1.956"/><path d="M19.439 16.146l-2.028-1.956c-.53-.513-.71-1.258-.45-1.956.26-.7.06-1.45.45-1.956l-2.028-1.956"/><path d="M8 9.138V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.138"/><path d="M4.561 16.146l2.028-1.956c.53.513.71 1.258-.45-1.956-.26-.7-.06-1.45.45-1.956l2.028-1.956"/><path d="M12 4v16"/></svg>', active: false, isApp: true, url: 'https://placehold.co/1000x800/f0abfc/701a75?text=Cargando+Aplicaci%C3%B3n+7' },
+                
+                // NUEVA APLICACIÓN: Beat Maker (reemplaza a Aplicación 7)
+                { id: 'app-beatmaker', title: 'Beat Maker', icon: beatMakerIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/beatmaker/' },
+                
+                // Aplicación 8 (se mantiene)
                 { id: 'app-ocho', title: 'Aplicación 8', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><path d="M6 8h2"/><path d="M6 12h2"/><path d="M18 8h-2"/><path d="M18 12h-2"/></svg>', active: false, isApp: true, url: 'https://placehold.co/1000x800/dcfce7/064e3b?text=Cargando+Aplicaci%C3%B3n+8' },
             ];
 
