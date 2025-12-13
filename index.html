@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo Pentagrama: El Portal Musical de Primaria</title>
+    <!-- Favicon (Apuntando a tu archivo local 'favicon.ico' o 'favicon.png') -->
+    <!-- DEBES ASEGURARTE DE QUE ESTE ARCHIVO EXISTA EN LA RAÍZ DEL SITIO WEB. -->
+    <link rel="icon" type="image/png" href="favicon.png"> 
+    
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Configuración para usar la fuente Inter -->
@@ -18,13 +22,6 @@
             height: 100%; 
             margin: 0;
             overflow-y: hidden; /* Impide el scroll vertical en la ventana principal */
-        }
-        /* Estilos para el icono (Placeholder de nota musical) */
-        .musical-note {
-            display: inline-block;
-            transform: rotate(15deg);
-            font-size: 2rem;
-            line-height: 1;
         }
         
         /* -------------------------------------- */
@@ -88,10 +85,12 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
             </button>
             
-            <!-- Logo/Imagen Placeholder (Icono de Nota Musical) -->
-            <div class="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center shadow-md">
-                <span class="musical-note text-sky-800 font-extrabold" aria-hidden="true">&#9835;</span>
+            <!-- Logo/Imagen (Ahora apuntando a tu archivo local 'logo-pentagrama.png') -->
+            <div class="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
+                <!-- ASEGÚRATE DE COLOCAR EL ARCHIVO 'logo-pentagrama.png' EN LA MISMA CARPETA. -->
+                <img src="logo-pentagrama.png" alt="Icono de Mundo Pentagrama" class="w-full h-full object-cover p-1">
             </div>
+            
             <!-- Título Principal -->
             <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">
                 Mundo Pentagrama
