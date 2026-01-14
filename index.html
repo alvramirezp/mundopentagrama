@@ -22,31 +22,6 @@
             overflow-y: hidden;
         }
         
-        /* ESTILOS DE ICONOS SVG */
-        .custom-icon svg {
-            width: 24px;
-            height: 24px;
-            color: currentColor;
-        }
-
-        /* 1. Estilo para iconos BASADOS EN TRAZO (stroke) */
-        .custom-icon svg[viewBox="0 0 24 24"] {
-            fill: none; 
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        
-        /* 2. Estilo para iconos BASADOS EN RELLENO (fill) */
-        .custom-icon #maestro-compas-svg path,
-        .custom-icon #Capa_1 path, 
-        .custom-icon #Layer_1 path,
-        .custom-icon svg:not([viewBox="0 0 24 24"]) path {
-            fill: currentColor;
-            stroke: none;
-        }
-        
         .content-area {
             position: absolute;
             top: 4rem;
@@ -72,7 +47,7 @@
             </button>
             
             <div class="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
-                <img src="logo-pentagrama.png" alt="Icono de Mundo Pentagrama" class="w-full h-full object-cover p-1">
+                <img src="logo-pentagrama.png" onerror="this.src='https://placehold.co/40x40/FACC15/0369A1?text=MP'" alt="Icono de Mundo Pentagrama" class="w-full h-full object-cover p-1">
             </div>
             
             <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">
@@ -85,35 +60,35 @@
     </header>
 
     <!-- 2. Índice/Menú de Navegación -->
-    <nav id="sidebar" class="fixed top-16 left-0 bottom-0 w-64 bg-slate-100 shadow-xl z-30 p-4 transition-all duration-300 transform -translate-x-full lg:translate-x-0 overflow-y-auto">
-        <div class="space-y-3 pt-2" id="app-buttons-container">
+    <nav id="sidebar" class="fixed top-16 left-0 bottom-0 w-72 bg-white shadow-xl z-30 flex flex-col transition-all duration-300 transform -translate-x-full lg:translate-x-0 border-r border-gray-200">
+        <div class="flex-1 overflow-y-auto p-2 space-y-1" id="app-buttons-container">
             <!-- Los botones se insertan aquí con JavaScript -->
         </div>
     </nav>
 
     <!-- 3. Cuerpo/Contenido Variable -->
-    <main id="content" class="lg:ml-64 content-area">
+    <main id="content" class="lg:ml-72 content-area bg-slate-50">
         
         <!-- Bienvenida -->
         <div id="welcome-page" class="p-4 lg:p-8 overflow-y-auto h-full">
-            <div class="max-w-4xl mx-auto py-10">
-                <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl border-t-4 border-sky-600">
-                    <header class="mb-6">
-                        <h2 id="content-title" class="text-3xl md:text-4xl font-extrabold text-sky-700 mb-2">
-                            ¡Te doy la bienvenida a Mundo Pentagrama!
+            <div class="max-w-4xl mx-auto py-6 lg:py-10">
+                <div class="bg-white p-6 md:p-12 rounded-3xl shadow-xl border-t-8 border-sky-500 ring-1 ring-gray-100">
+                    <header class="mb-8 text-center md:text-left">
+                        <h2 id="content-title" class="text-3xl md:text-5xl font-extrabold text-slate-800 mb-3 tracking-tight">
+                            ¡Bienvenido/a!
                         </h2>
-                        <p id="content-subtitle" class="text-xl text-gray-600 font-bold">El portal educativo que transforma el aprendizaje musical.</p>
+                        <p id="content-subtitle" class="text-xl md:text-2xl text-sky-600 font-semibold">El portal donde la música cobra vida.</p>
                     </header>
                     
-                    <section class="mb-8">
-                        <div id="content-text" class="text-gray-700 leading-relaxed text-base md:text-lg space-y-4">
+                    <section class="mb-10">
+                        <div id="content-text" class="text-gray-600 leading-relaxed text-lg space-y-6">
                             <!-- El contenido se inserta aquí por JavaScript -->
                         </div>
                     </section>
                     
-                    <footer class="text-center mt-6 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-500">
-                            © 2025 Mundo Pentagrama. Portal Educativo de Primaria. Álvaro Ramírez.
+                    <footer class="text-center mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+                            © 2025 Mundo Pentagrama | Portal Educativo | Álvaro Ramírez
                         </p>
                     </footer>
                 </div>
@@ -128,16 +103,31 @@
     </main>
 
     <script>
-        // DEFINICIONES DE ICONOS SVG
-        const xylophoneIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="5" width="3" height="15" rx="1" ry="1"/><rect x="8" y="8" width="3" height="12" rx="1" ry="1"/><rect x="13" y="11" width="3" height="9" rx="1" ry="1"/><rect x="18" y="14" width="3" height="6" rx="1" ry="1"/></svg></span>';
-        const metronomeIcon = '<span class="custom-icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314 314" xml:space="preserve"><path d="M281.853,46.631c-0.39-2.035-1.66-3.794-3.47-4.802l-11.257-6.271l5.297-9.511c1.881-3.378,0.668-7.641-2.709-9.521 c-3.38-1.881-7.641-0.667-9.521,2.709l-5.297,9.511l-11.257-6.269c-1.81-1.008-3.975-1.162-5.908-0.422 c-1.936,0.74-3.442,2.3-4.117,4.259l-13.806,40.109c-1.103,3.207,0.25,6.743,3.213,8.394l4.741,2.642l-23.115,41.501L184.592,17.11 C182.703,7.516,173.563,0,163.783,0h-56.052c-9.778,0-18.918,7.516-20.809,17.11L46.102,224.425 c-0.002,0.012-0.004,0.023-0.006,0.035l-13.729,69.725c-0.998,5.067,0.205,10.132,3.3,13.895C38.76,311.842,43.496,314,48.66,314 h174.195c5.163,0,9.898-2.158,12.993-5.92c3.095-3.763,4.298-8.827,3.301-13.896l-13.732-69.741 c-0.001-0.002-0.001-0.004-0.001-0.004l-16.584-84.225l31.16-55.944l4.742,2.642c1.072,0.598,2.243,0.885,3.402,0.885 c2.046,0,4.056-0.896,5.425-2.571l26.836-32.853C281.708,50.769,282.241,48.665,281.853,46.631z M100.659,19.816 c0.6-3.044,3.971-5.816,7.072-5.816h56.052c3.103,0,6.473,2.771,7.072,5.815l23.249,118.069L164,191.933 c-6.17-2.645-13.121-4.627-21.242-5.363v-14.92h10.96c3.866,0,7-3.134,7-7s-3.134-7-7-7h-10.96v-41.211h10.96c3.866,0,7-3.134,7-7 c0-3.866-3.134-7-7-7h-10.96v-41.21h10.96c3.866,0,7-3.134,7-7s-3.134-7-7-7h-10.96V34.938c0-3.866-3.134-7-7-7 c-3.866,0-7,3.134-7,7v12.291h-10.96c-3.866,0-7,3.134-7,7s3.134,7,7,7h10.96v41.21h-10.96c-3.866,0-7,3.134-7,7 c0,3.866,3.134,7,7,7h10.96v41.211h-10.96c-3.866,0-7,3.134-7,7s3.134,7,7,7h10.96v14.92c-19.447,1.763-32.189,10.688-43.564,18.666 c-7.894,5.536-14.975,10.493-23.52,12.573L100.659,19.816z M225.036,299.188c-0.432,0.523-1.206,0.813-2.181,0.813H48.66 c-0.976,0-1.75-0.289-2.181-0.814c-0.432-0.524-0.565-1.34-0.377-2.297l12.675-64.372c14.147-1.593,24.455-8.807,34.455-15.82 c12.059-8.457,23.448-16.444,42.525-16.444c19.077,0,30.466,7.987,42.524,16.444c10.001,7.014,20.308,14.228,34.456,15.82 l12.675,64.371C225.602,297.846,225.468,298.662,225.036,299.188z M209.842,217.809c-8.545-2.08-15.627-7.037-23.521-12.574 c-3.175-2.227-6.456-4.527-9.959-6.726l21.928-39.367L209.842,217.809z M246.427,71.829l-11.474-6.392l9.177-26.662l20.136,11.216 L246.427,71.829z"/></svg></span>';
-        const harpIcon = '<span class="custom-icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve"><path d="M401.243,129.918c0-14.168-7.765-27.106-20.262-33.765c-16.639-8.868-37.614-4.1-48.796,11.093l-19.868,27.023c-1.573,2.139-3.96,3.312-6.646,3.21c-2.645-0.099-4.968-1.444-6.375-3.692l-47.357-75.639c-20.005-31.942-56.554-50.377-93.964-47.707c-1.303,0.093-6.221,0.785-6.221,0.785C147.992,4.483,140.819,0,132.667,0c-1.716,0-3.443,0.204-5.167,0.615c-10.701,2.597-17.834,12.797-16.606,23.638l48.847,480.623c0.412,4.046,3.818,7.123,7.885,7.123h146.594c3.202,0,6.091-1.927,7.32-4.884c1.229-2.957,0.558-6.363-1.7-8.633l-27.478-27.615c-1.487-1.495-3.509-2.336-5.618-2.336H268.51L398.5,144.113C400.32,139.557,401.243,134.782,401.243,129.918z M383.783,138.226L249.848,472.485c-0.375,0.937-0.569,1.938-0.569,2.949v1.025c0,4.377,3.549,7.926,7.926,7.926h26.244l11.703,11.763H174.789L126.656,22.559c-0.341-3.011,1.63-5.822,4.55-6.531c3.617-0.859,7.051,1.657,7.45,5.195l9.32,83.544c0.006,0.077,0.014,0.154,0.022,0.233l41.267,369.883c0.138,2.362,1.334,4.618,3.394,6.05c3.209,2.23,7.572,1.783,10.269-1.047c0.57-0.598,1.037-1.278,1.392-2.01l173.42-333.575c2.108-4.073,2.431-8.884,0.882-13.2c-1.548-4.315-4.855-7.826-9.076-9.632c-2.606-1.114-5.465-1.537-8.193-1.231c-5.126,0.525-9.625,3.332-12.346,7.7l-18.516,29.728c-6.781,10.884-18.486,17.442-31.312,17.54c-0.098,0-0.196,0.001-0.293,0.001c-12.712,0-24.393-6.363-31.288-17.064l-48.995-76.021c-7.108-11.024-19.173-17.602-32.27-17.602c-0.014,0-0.027,0-0.041,0c-1.412,0-2.739,0.071-4.008,0.212c-8.396,0.88-15.902,4.4-21.743,9.693l-5.324-47.727l0.867-0.172c32.651-3.506,64.977,12.183,82.419,40.033l47.356,75.636c4.172,6.669,11.357,10.827,19.218,11.122c7.884,0.283,15.346-3.315,20.015-9.659l19.867-27.021c6.545-8.896,18.827-11.689,28.57-6.495c7.318,3.899,11.864,11.476,11.864,19.775C385.39,132.759,384.849,135.556,383.783,138.226z"/></svg></span>';
-        const maestroCompasIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" id="maestro-compas-svg" width="24" height="24" viewBox="0 0 24 24"><path d="m10.923 1.3165h0.58478c1.0908 0.00941 2.1029 0.24929 3.0363 0.71973 0.93338 0.47046 1.7206 1.1152 2.3616 1.9343-0.11059-0.00184-0.21556-0.00932-0.31488-0.022489-0.09936-0.013108-0.20432-0.020607-0.31488-0.022489-1.0206 0.037498-1.8134 0.40111-2.3784 1.0908-0.56511 0.68974-0.85188 1.4807-0.8603 2.3728 0.06746 1.2229 0.48355 2.0946 1.2483 2.6146 0.7647 0.52011 1.4732 0.77314 2.1254 0.75908 0.83404-0.0253 1.5387-0.3458 2.1142-0.96151 0.5754-0.61571 0.87528-1.3748 0.89967-2.2773-2.99e-4 -0.88355-0.29463-1.8904-0.88301-3.0205-0.58841-1.1301-1.4692-2.1203-2.6423-2.9706-1.1732-0.85022-2.6371-1.2973-4.3917-1.3411h-0.58478l-1.6644 0.13495c-3.2284 0.58666-5.5432 1.9549-6.9443 4.1047-1.4011 2.1498-2.0852 4.6651-2.0524 7.5459-0.029995 2.8808 0.65975 5.3961 2.0692 7.5459 1.4095 2.1498 3.7186 3.518 6.9274 4.1047l1.6644 0.13494c0.11152 0.0019 0.2146 0.0093 0.30926 0.02249 0.09464 0.01311 0.18648 0.0206 0.27552 0.02249 1.9992-0.07997 3.6036-0.68975 4.8132-1.8293 1.2095-1.1396 2.0842-2.3292 2.624-3.5687 0.53977-1.2395 0.80467-2.0493 0.79469-2.4291-0.0074-0.16026-0.07124-0.28959-0.19118-0.38798-0.11998-0.09841-0.25118-0.14901-0.3936-0.15182-0.1153-9.42e-4 -0.22213 0.03468-0.3205 0.10684-0.09842 0.07215-0.17151 0.18648-0.2193 0.343-0.44516 1.8771-1.2867 3.4646-2.5247 4.7626-1.238 1.2979-2.7656 1.9746-4.5826 2.0299-0.08903-0.0019-0.18087-0.0094-0.27552-0.02249-0.09466-0.01313-0.19776-0.02063-1.1414-0.17993-2.0918-0.67006-2.8901-1.6241-3.2276-3.0195-0.33738-1.3954-0.48358-3.1254-0.43858-5.1899v-4.5883c-0.044991-2.0645 0.1012-3.7945 0.43858-5.1899 0.33737-1.3954 1.1358-2.3494 2.3953-2.862" stroke-width=".9702"/></svg></span>';
-        const beatMakerIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span>';
-        const emotionsIcon = '<span class="custom-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>';
+        /**
+         * DEFINICIÓN DE ICONOS
+         */
         
-        // Icono personalizado de UkeMaster proporcionado por el usuario
-        const ukeMasterCustomIcon = '<span class="custom-icon"><svg fill="currentColor" width="24px" height="24px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M 26.59375 3.0625 C 26.488281 3.0625 26.386719 3.113281 26.28125 3.21875 L 25.53125 3.96875 L 25.21875 3.65625 L 24.78125 4.0625 L 25.125 4.40625 L 24.6875 4.8125 L 24.375 4.5 L 23.9375 4.9375 L 24.25 5.25 L 23.53125 6 C 23.316406 6.214844 23.316406 6.410156 23.53125 6.625 L 19.34375 10.8125 C 18.410156 10.066406 17.414063 9.5 16.46875 9.21875 C 14.710938 8.699219 13.148438 9.074219 11.9375 10.28125 C 11.402344 10.816406 11.074219 11.46875 10.9375 12.25 C 10.71875 13.515625 9.601563 14.503906 8.28125 14.59375 C 6.839844 14.691406 5.574219 15.269531 4.625 16.21875 C 2.121094 18.722656 2.574219 23.265625 5.65625 26.34375 C 7.40625 28.09375 9.636719 29 11.6875 29 C 13.25 29 14.699219 28.457031 15.78125 27.375 C 16.730469 26.425781 17.308594 25.160156 17.40625 23.71875 C 17.496094 22.398438 18.453125 21.28125 19.71875 21.0625 C 20.5 20.925781 21.183594 20.597656 21.71875 20.0625 C 22.925781 18.855469 23.300781 17.289063 22.78125 15.53125 C 22.609375 14.945313 22.300781 14.347656 21.9375 13.75 L 20.46875 15.21875 C 20.625 15.519531 20.757813 15.808594 20.84375 16.09375 C 21.152344 17.132813 20.988281 17.980469 20.3125 18.65625 C 20.070313 18.894531 19.78125 19.027344 19.40625 19.09375 C 17.242188 19.46875 15.554688 21.367188 15.40625 23.59375 C 15.34375 24.542969 14.976563 25.363281 14.375 25.96875 C 12.648438 27.691406 9.394531 27.238281 7.09375 24.9375 C 4.792969 22.636719 4.308594 19.347656 6.03125 17.625 C 6.636719 17.023438 7.457031 16.65625 8.40625 16.59375 C 10.632813 16.445313 12.527344 14.757813 12.90625 12.59375 C 12.972656 12.21875 13.101563 11.929688 13.34375 11.6875 C 13.808594 11.222656 14.339844 11 14.96875 11 C 15.253906 11 15.582031 11.058594 15.90625 11.15625 C 16.535156 11.34375 17.238281 11.714844 17.90625 12.21875 L 14.5625 15.5625 C 14.382813 15.519531 14.195313 15.5 14 15.5 C 12.621094 15.5 11.5 16.621094 11.5 18 C 11.5 19.378906 12.621094 20.5 14 20.5 C 15.378906 20.5 16.5 19.378906 16.5 18 C 16.5 17.847656 16.464844 17.707031 16.4375 17.5625 L 25.53125 8.4375 C 25.746094 8.652344 25.972656 8.652344 26.1875 8.4375 L 26.9375 7.6875 L 27.25 8 L 27.65625 7.59375 L 27.34375 7.28125 L 27.78125 6.84375 L 28 7.28125 L 28.40625 6.84375 L 28.09375 6.53125 L 28.84375 5.78125 C 29.058594 5.566406 29.058594 5.339844 28.84375 5.125 L 26.9375 3.21875 C 26.832031 3.113281 26.699219 3.0625 26.59375 3.0625 Z M 26.5 4.28125 L 26.9375 4.71875 L 25 6.625 L 24.59375 6.21875 Z M 27.34375 5.03125 L 27.78125 5.46875 L 25.84375 7.375 L 25.4375 6.9375 Z M 9.09375 19.6875 L 7.6875 21.09375 L 10.90625 24.3125 L 12.3125 22.90625 Z"/></svg></span>';
+        // Lucide Standard Icons (ViewBox 0 0 24 24, Stroke)
+        const homeIcon = '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>';
+        const musicIcon = '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
+        const drumIcon = '<path d="m2 2 8 8"/><path d="m22 2-8 8"/><ellipse cx="12" cy="9" rx="10" ry="5"/><path d="M7 13.4v7.9"/><path d="M12 14v8"/><path d="M17 13.4v7.9"/><path d="M2 9v8a10 5 0 0 0 20 0V9"/>';
+        const micIcon = '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>';
+        const gridIcon = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>';
+        const heartIcon = '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>';
+        const wavesIcon = '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>';
+
+        // Icono "C" mayúscula para Compás Maestro
+        const cIcon = '<path d="M17 6.1a9 9 0 1 0 0 11.8" />';
+
+        // Phosphor Metronome (Specific ViewBox 0 0 256 256, Fill)
+        const metronomeIcon = '<path d="M187.14,114.84l26.78-29.46a8,8,0,0,0-11.84-10.76l-20.55,22.6-17.2-54.07A15.94,15.94,0,0,0,149.08,32H106.91A15.94,15.94,0,0,0,91.66,43.15l-50.91,160A16,16,0,0,0,56,224H200a16,16,0,0,0,15.25-20.85ZM184.72,160H146.08l28.62-31.48ZM106.91,48h42.17l20,62.9L124.46,160H71.27ZM56,208l10.18-32H189.81L200,208Z"></path>';
+        
+        // Xilófono Personalizado (Barras descendentes - 5 barras ahora)
+        const xylophoneIcon = '<path d="M4 22V2"/><path d="M8 20V4"/><path d="M12 18V6"/><path d="M16 16V8"/><path d="M20 14V10"/>';
+
+        // Lucide Guitar (Updated by User)
+        const guitarIcon = '<path d="m11.9 12.1 4.514-4.514"/><path d="M20.1 2.3a1 1 0 0 0-1.4 0l-1.114 1.114A2 2 0 0 0 17 4.828v1.344a2 2 0 0 1-.586 1.414A2 2 0 0 1 17.828 7h1.344a2 2 0 0 0 1.414-.586L21.7 5.3a1 1 0 0 0 0-1.4z"/><path d="m6 16 2 2"/><path d="M8.23 9.85A3 3 0 0 1 11 8a5 5 0 0 1 5 5 3 3 0 0 1-1.85 2.77l-.92.38A2 2 0 0 0 12 18a4 4 0 0 1-4 4 6 6 0 0 1-6-6 4 4 0 0 1 4-4 2 2 0 0 0 1.85-1.23z"/>';
+
 
         // LÓGICA PRINCIPAL
         document.addEventListener('DOMContentLoaded', () => {
@@ -151,16 +141,19 @@
             const contentTextDiv = document.getElementById('content-text');
 
             const navLinks = [
-                { id: 'app-bienvenida', title: 'Bienvenida', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>', active: true, isApp: false },
-                { id: 'app-ritmo-compas', title: 'Ritmo y Compás', icon: metronomeIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compases/' },
-                { id: 'app-compas', title: 'Compás Maestro', icon: maestroCompasIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compasmaestro/' },
-                { id: 'app-ritmo-melodia', title: 'Ritmo y Melodía', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>', active: false, isApp: true, url: 'https://alvramirezp.github.io/ritmoymelodia/' },
-                { id: 'app-instrumentos', title: 'Instrumentos Musicales', icon: harpIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/instrumentos/' },
-                { id: 'app-clasif-vocal', title: 'Mundo de Voces', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>', active: false, isApp: true, url: 'https://alvramirezp.github.io/voces/' },
-                { id: 'app-xilofono', title: 'Xilófono Virtual', icon: xylophoneIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/xilofono/' },
-                { id: 'app-ukemaster', title: 'UkeMaster', icon: ukeMasterCustomIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/ukemaster/' },
-                { id: 'app-beatmaker', title: 'Beat Maker', icon: beatMakerIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/beatmaker/' },
-                { id: 'app-emociones', title: 'Emociones Musicales', icon: emotionsIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/emociones/' },
+                // type: 'fill' para iconos rellenos, 'stroke' (defecto) para líneas.
+                // viewBox: dimensiones del SVG original.
+                { id: 'app-bienvenida', title: 'Inicio', path: homeIcon, active: true, isApp: false, color: 'text-sky-600' },
+                { id: 'app-ritmo-compas', title: 'Ritmo y Compás', path: metronomeIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compases/', color: 'text-indigo-500', type: 'fill', viewBox: '0 0 256 256' },
+                { id: 'app-compas', title: 'Compás Maestro', path: cIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/compasmaestro/', color: 'text-purple-500' },
+                { id: 'app-ritmo-melodia', title: 'Ritmo y Melodía', path: musicIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/ritmoymelodia/', color: 'text-pink-500' },
+                { id: 'app-instrumentos', title: 'Instrumentos', path: drumIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/instrumentos/', color: 'text-amber-500' },
+                { id: 'app-clasif-vocal', title: 'Mundo de Voces', path: micIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/voces/', color: 'text-red-500' },
+                { id: 'app-xilofono', title: 'Xilófono Virtual', path: xylophoneIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/xilofono/', color: 'text-lime-600' },
+                { id: 'app-ukemaster', title: 'UkeMaster', path: guitarIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/ukemaster/', color: 'text-orange-500' },
+                { id: 'app-beatmaker', title: 'Beat Maker', path: gridIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/beatmaker/', color: 'text-cyan-500' },
+                { id: 'app-emociones', title: 'Emociones', path: heartIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/emociones/', color: 'text-rose-500' },
+                { id: 'app-paisaje-sonoro', title: 'Paisaje Sonoro', path: wavesIcon, active: false, isApp: true, url: 'https://alvramirezp.github.io/paisajesonoro/', color: 'text-teal-500' },
             ];
 
             const welcomeContent = {
@@ -201,14 +194,40 @@
                 appButtonsContainer.innerHTML = '';
                 navLinks.forEach(link => {
                     const isActive = link.active;
+                    
                     const button = document.createElement('button');
                     button.id = link.id;
-                    button.className = `w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 text-left 
-                        ${isActive 
-                            ? 'bg-yellow-400 text-sky-800 shadow-lg font-bold' 
-                            : 'bg-slate-200 hover:bg-sky-200 text-gray-700 hover:text-sky-800'}`;
+                    button.className = `group w-full flex items-center p-2 rounded-xl transition-all duration-200 text-left border ${
+                        isActive 
+                            ? 'bg-sky-50 border-sky-100 shadow-sm' 
+                            : 'bg-white border-transparent hover:bg-gray-50'
+                    }`;
                     
-                    button.innerHTML = `${link.icon} <span class="text-sm">${link.title}</span>`;
+                    const iconContainerClass = `w-10 h-10 min-w-[2.5rem] flex items-center justify-center rounded-lg mr-3 transition-colors ${
+                        isActive ? 'bg-white shadow-sm' : 'bg-gray-100 group-hover:bg-white group-hover:shadow-sm'
+                    }`;
+
+                    // Lógica para manejar iconos de relleno (fill) o trazo (stroke) y distintos viewBox
+                    const type = link.type || 'stroke';
+                    const viewBox = link.viewBox || '0 0 24 24';
+                    
+                    const fillClass = type === 'fill' 
+                        ? 'fill-current stroke-none' 
+                        : 'fill-none stroke-current stroke-2';
+
+                    const svgClass = `w-6 h-6 ${link.color} ${fillClass}`;
+
+                    button.innerHTML = `
+                        <div class="${iconContainerClass}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" stroke-linecap="round" stroke-linejoin="round" class="${svgClass}">
+                                ${link.path}
+                            </svg>
+                        </div>
+                        <span class="text-sm font-semibold ${isActive ? 'text-gray-900' : 'text-gray-500 group-hover:text-gray-700'}">
+                            ${link.title}
+                        </span>
+                        ${isActive ? '<div class="ml-auto w-1.5 h-1.5 rounded-full bg-sky-500"></div>' : ''}
+                    `;
                     
                     button.addEventListener('click', () => {
                         navLinks.forEach(l => l.active = (l.id === link.id));
@@ -228,7 +247,5 @@
             updateContent(navLinks.find(l => l.active));
         });
     </script>
-</body>
-</html>
 </body>
 </html>
