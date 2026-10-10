@@ -86,11 +86,12 @@
                         </div>
                     </section>
                     
-                    <footer class="text-center mt-8 pt-6 border-t border-gray-100">
-                        <p>Mundo Pentagrama | Portal Educativo | Álvaro Ramírez</p>
-                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">
-                        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-                          <img alt="Licencia Creative Commons" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg" />
+                    <footer class="text-center mt-8 pt-6 border-t border-gray-100 flex flex-col items-center justify-center space-y-3">
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center">
+                            Mundo Pentagrama | Portal Educativo | Álvaro Ramírez
+                        </p>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="hover:opacity-80 transition-opacity" title="Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional">
+                            <img alt="Licencia Creative Commons" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg" class="h-8" />
                         </a>
                     </footer>
                 </div>
@@ -131,7 +132,6 @@
         // Lucide Guitar (Updated by User)
         const guitarIcon = '<path d="m11.9 12.1 4.514-4.514"/><path d="M20.1 2.3a1 1 0 0 0-1.4 0l-1.114 1.114A2 2 0 0 0 17 4.828v1.344a2 2 0 0 1-.586 1.414A2 2 0 0 1 17.828 7h1.344a2 2 0 0 0 1.414-.586L21.7 5.3a1 1 0 0 0 0-1.4z"/><path d="m6 16 2 2"/><path d="M8.23 9.85A3 3 0 0 1 11 8a5 5 0 0 1 5 5 3 3 0 0 1-1.85 2.77l-.92.38A2 2 0 0 0 12 18a4 4 0 0 1-4 4 6 6 0 0 1-6-6 4 4 0 0 1 4-4 2 2 0 0 0 1.85-1.23z"/>';
 
-
         // LÓGICA PRINCIPAL
         document.addEventListener('DOMContentLoaded', () => {
             const sidebar = document.getElementById('sidebar');
@@ -166,7 +166,7 @@
                 text: [
                     `<p><b>Mundo Pentagrama</b> es el lugar perfecto para descubrir el maravilloso mundo de la música: las notas, los ritmos, los instrumentos musicales…</p>`,
                     `<p>Este portal interactivo está diseñado para alumnos y alumnas de <b>Educación Primaria</b>, haciendo que el aprendizaje de la música sea <b>divertido y práctico</b>: desde aprender a tocar el xilófono virtual hasta entender los ritmos más complicados.</p>`,
-                    `<p>Utiliza el <b>menú</b> para elegir la aplicación que quieras explorar hoy. Cada botón te llevará a un desafío musical nuevo y divertido.</p>`,
+                    `<p>Utiliza el <b>menú de la izquierda</b> para elegir la aplicación que quieras explorar hoy. Cada botón te llevará a un desafío musical nuevo y divertido.</p>`,
                     `<p class="text-xl font-extrabold text-sky-600">¡Elige tu primera aventura y que empiece la música!</p>`
                 ].join('')
             };
